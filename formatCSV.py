@@ -17,7 +17,7 @@ def shiftCSV(file):
 
 def normalize(file):
     
-    dataframe = pd.read_csv('../Dataset/CassiopéeShift/' + file, sep=r'\s*,\s*', engine='python')
+    dataframe = pd.read_csv('./Dataset/Cassiopée_Allbones/' + file, sep=r'\s*,\s*', engine='python')
     columns = dataframe.columns.tolist()
     print(columns)
     norm_vals_X = dataframe['pelvis_T_glob'][1:]
@@ -33,9 +33,9 @@ def normalize(file):
             elif dataframe[i][0] == 'Z':
                 dataframe[i][j] = round(float(dataframe[i][j]) - float(norm_vals_Z[j]), 3)
         print('Done : ' , file , '. Only ' , len(dataframe.index) - j , ' to go !')
-    dataframe.to_csv('./Dataset/CassiopéeNorm/' + file, index=False)
+    dataframe.to_csv('./Dataset/Cassiopée_Allbones_Norm/' + file, index=False)
                 
-for file in os.listdir('./Dataset/CassiopéeShift/'):
+for file in os.listdir('./Dataset/Cassiopée_Allbones/'):
    if file.endswith('.csv'):
         normalize(file)
         
