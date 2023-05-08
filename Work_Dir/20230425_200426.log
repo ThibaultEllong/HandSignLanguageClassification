@@ -1,4 +1,31 @@
-model = dict(
+2023-04-25 20:04:29,760 - mmaction - INFO - Environment info:
+------------------------------------------------------------
+sys.platform: win32
+Python: 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)]
+CUDA available: False
+MSVC: Compilateur d'optimisation Microsoft (R) C/C++ version 19.29.30147 pour x64
+GCC: n/a
+PyTorch: 2.0.0+cpu
+PyTorch compiling details: PyTorch built with:
+  - C++ Version: 199711
+  - MSVC 193431937
+  - Intel(R) Math Kernel Library Version 2020.0.2 Product Build 20200624 for Intel(R) 64 architecture applications
+  - Intel(R) MKL-DNN v2.7.3 (Git Hash 6dbeffbae1f23cbbeae17adb7b5b13f1f37c080e)
+  - OpenMP 2019
+  - LAPACK is enabled (usually provided by MKL)
+  - CPU capability usage: AVX2
+  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CXX_COMPILER=C:/actions-runner/_work/pytorch/pytorch/builder/windows/tmp_bin/sccache-cl.exe, CXX_FLAGS=/DWIN32 /D_WINDOWS /GR /EHsc /w /bigobj /FS -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOCUPTI -DLIBKINETO_NOROCTRACER -DUSE_FBGEMM -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_DISABLE_GPU_ASSERTS=OFF, TORCH_VERSION=2.0.0, USE_CUDA=0, USE_CUDNN=OFF, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=OFF, USE_NNPACK=OFF, USE_OPENMP=ON, USE_ROCM=OFF, 
+
+TorchVision: 0.15.1+cpu
+OpenCV: 4.7.0
+MMCV: 1.6.2
+MMCV Compiler: MSVC 192930147
+MMCV CUDA Compiler: not available
+MMAction2: 0.24.1+549e090
+------------------------------------------------------------
+
+2023-04-25 20:04:29,770 - mmaction - INFO - Distributed training: False
+2023-04-25 20:04:30,756 - mmaction - INFO - Config: model = dict(
     type='SkeletonGCN',
     backbone=dict(
         type='AGCN',
@@ -12,8 +39,8 @@ model = dict(
     train_cfg=None,
     test_cfg=None)
 dataset_type = 'PoseDataset'
-ann_file_train = '"G:\TSP\DA\CassiopÃ©e\HandSignLanguageClassification\Dataset\CassiopÃ©ePKL\xsub\train.pkl"'
-ann_file_val = '"G:\TSP\DA\CassiopÃ©e\HandSignLanguageClassification\Dataset\CassiopÃ©ePKL\xsub\val.pkl"'
+ann_file_train = 'G:/TSP/DA/Cassiopée/HandSignLanguageClassification/Dataset/CassiopéePKL/xsub/train.pkl'
+ann_file_val = 'G:/TSP/DA/Cassiopée/HandSignLanguageClassification/Dataset/CassiopéePKL/xsub/val.pkl'
 train_pipeline = [
     dict(type='PaddingWithLoop', clip_len=300),
     dict(type='PoseDecode'),
@@ -42,7 +69,7 @@ data = dict(
     train=dict(
         type='PoseDataset',
         ann_file=
-        ann_file_train,
+        'G:/TSP/DA/Cassiopée/HandSignLanguageClassification/Dataset/CassiopéePKL/xsub/train.pkl',
         data_prefix='',
         pipeline=[
             dict(type='PaddingWithLoop', clip_len=300),
@@ -53,7 +80,8 @@ data = dict(
         ]),
     val=dict(
         type='PoseDataset',
-        ann_file=ann_file_val,
+        ann_file=
+        'G:/TSP/DA/Cassiopée/HandSignLanguageClassification/Dataset/CassiopéePKL/xsub/val.pkl',
         data_prefix='',
         pipeline=[
             dict(type='PaddingWithLoop', clip_len=300),
@@ -64,7 +92,8 @@ data = dict(
         ]),
     test=dict(
         type='PoseDataset',
-        ann_file='data/ntu/nturgb+d_skeletons_60_3d/xsub/val.pkl',
+        ann_file=
+        'G:/TSP/DA/Cassiopée/HandSignLanguageClassification/Dataset/CassiopéePKL/xsub/val.pkl',
         data_prefix='',
         pipeline=[
             dict(type='PaddingWithLoop', clip_len=300),
@@ -83,9 +112,13 @@ evaluation = dict(interval=3, metrics=['top_k_accuracy'])
 log_config = dict(interval=100, hooks=[dict(type='TextLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = 'G:/TSP/DA/CassiopÃ©e/HandSignLanguageClassification/Work_Dir'
+work_dir = 'G:\TSP\DA\Cassiopée\HandSignLanguageClassification\Work_Dir'
 load_from = None
-resume_from = None
+resume_from = 'checkpoints/2sagcn_80e_ntu60_xsub_keypoint_3d-3bed61ba.pth'
 workflow = [('train', 1)]
+gpu_ids = range(0, 0)
 omnisource = False
 module_hooks = []
+
+2023-04-25 20:04:30,770 - mmaction - INFO - Set random seed to 1119516534, deterministic: False
+2023-04-25 20:04:30,861 - mmaction - INFO - 168 videos remain after valid thresholding
