@@ -12,8 +12,8 @@ model = dict(
     train_cfg=None,
     test_cfg=None)
 dataset_type = 'PoseDataset'
-ann_file_train = 'G:\TSP\DA\Cassiopée\HandSignLanguageClassification\Dataset\Annotation_gloses.csv'
-ann_file_val = 'data/ntu/nturgb+d_skeletons_60_3d/xsub/val.pkl'
+ann_file_train = '"G:\TSP\DA\Cassiopée\HandSignLanguageClassification\Dataset\CassiopéePKL\xsub\train.pkl"'
+ann_file_val = '"G:\TSP\DA\Cassiopée\HandSignLanguageClassification\Dataset\CassiopéePKL\xsub\val.pkl"'
 train_pipeline = [
     dict(type='PaddingWithLoop', clip_len=300),
     dict(type='PoseDecode'),
@@ -42,7 +42,7 @@ data = dict(
     train=dict(
         type='PoseDataset',
         ann_file=
-        'G:\TSP\DA\Cassiopée\HandSignLanguageClassification\Dataset\Annotation_gloses.csv',
+        ann_file_train,
         data_prefix='',
         pipeline=[
             dict(type='PaddingWithLoop', clip_len=300),
@@ -53,7 +53,7 @@ data = dict(
         ]),
     val=dict(
         type='PoseDataset',
-        ann_file='data/ntu/nturgb+d_skeletons_60_3d/xsub/val.pkl',
+        ann_file=ann_file_val,
         data_prefix='',
         pipeline=[
             dict(type='PaddingWithLoop', clip_len=300),
@@ -83,7 +83,7 @@ evaluation = dict(interval=3, metrics=['top_k_accuracy'])
 log_config = dict(interval=100, hooks=[dict(type='TextLoggerHook')])
 dist_params = dict(backend='nccl')
 log_level = 'INFO'
-work_dir = 'G:\TSP\DA\Cassiopée\HandSignLanguageClassification\Work_Dir'
+work_dir = 'G:/TSP/DA/Cassiopée/HandSignLanguageClassification/Work_Dir'
 load_from = None
 resume_from = None
 workflow = [('train', 1)]

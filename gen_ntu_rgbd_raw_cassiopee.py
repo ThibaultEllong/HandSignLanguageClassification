@@ -248,7 +248,7 @@ def gendata(data_path,
             if task == 'ntu60':
                 istraining = 1
             else:
-                istraining = 1
+                istraining = 0
         elif benchmark == 'xview':
             istraining = 1
         elif benchmark == 'xsetup':
